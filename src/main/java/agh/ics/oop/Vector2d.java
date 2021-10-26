@@ -39,6 +39,9 @@ public final class Vector2d {
         return new Vector2d(this.x - other.x, this.y - other.y);
     }
 
+    public int hashCode() {
+        return 37;
+    }
     public boolean equals(Object other){
         if (this == other)
             return true;
