@@ -29,7 +29,7 @@ public class World {
     public static void main(String[] args) {
         Direction[] directions = new Direction[args.length];
         for (int i = 0; i < args.length; i++) {
-            switch(args[i]) {
+            switch (args[i]) {
                 case "f":
                     directions[i] = Direction.f;
                     break;
@@ -49,9 +49,9 @@ public class World {
         }
         System.out.println("Start");
 //        run(directions);
-        Vector2d position1 = new Vector2d(1,2);
+        Vector2d position1 = new Vector2d(1, 2);
         System.out.println(position1);
-        Vector2d position2 = new Vector2d(-2,1);
+        Vector2d position2 = new Vector2d(-2, 1);
         System.out.println(position2);
         System.out.println(position1.add(position2));
         MapDirection dir1 = MapDirection.EAST;

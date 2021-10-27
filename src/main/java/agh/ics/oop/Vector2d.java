@@ -1,7 +1,5 @@
 package agh.ics.oop;
 
-import java.util.Vector;
-
 public final class Vector2d {
     public int x;
     public int y;
@@ -42,7 +40,8 @@ public final class Vector2d {
     public int hashCode() {
         return 37;
     }
-    public boolean equals(Object other){
+
+    public boolean equals(Object other) {
         if (this == other)
             return true;
 
