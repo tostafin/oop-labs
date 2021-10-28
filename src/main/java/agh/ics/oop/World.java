@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import javax.swing.text.html.Option;
+
 public class World {
 
     public static void run(Direction[] dirs) {
@@ -49,16 +51,33 @@ public class World {
         }
         System.out.println("Start");
 //        run(directions);
-        Vector2d position1 = new Vector2d(1, 2);
-        System.out.println(position1);
-        Vector2d position2 = new Vector2d(-2, 1);
-        System.out.println(position2);
-        System.out.println(position1.add(position2));
-        MapDirection dir1 = MapDirection.EAST;
-        System.out.println(dir1);
-        System.out.println(dir1.next());
-        System.out.println(dir1.previous());
-        System.out.println(dir1.toUnitVector());
-        System.out.println("Stop");
+//        Vector2d position1 = new Vector2d(1, 2);
+//        System.out.println(position1);
+//        Vector2d position2 = new Vector2d(-2, 1);
+//        System.out.println(position2);
+//        System.out.println(position1.add(position2));
+//        MapDirection dir1 = MapDirection.EAST;
+//        System.out.println(dir1);
+//        System.out.println(dir1.next());
+//        System.out.println(dir1.previous());
+//        System.out.println(dir1.toUnitVector());
+//        System.out.println("Stop");
+        Animal myAnimal = new Animal();
+        System.out.println(myAnimal);
+//        zwierzatko.move(MoveDirection.RIGHT);
+//        zwierzatko.move(MoveDirection.FORWARD);
+//        zwierzatko.move(MoveDirection.FORWARD);
+//        zwierzatko.move(MoveDirection.FORWARD);
+        String[] D = {"r", "f", "f", "forward"};
+        OptionsParser tmp = new OptionsParser();
+        MoveDirection[] A = tmp.parse(D);
+        for (MoveDirection d : A) myAnimal.move(d);
+        System.out.println(myAnimal);
+        /*
+        Do 10.
+        1) Tablica dwuwymiarowa boolean
+        2) Trzymanie zwierząt w liście
+        Którą opcję wybrać zależy od tego, ile jest zwierząt.
+        */
     }
 }
