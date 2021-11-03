@@ -74,7 +74,7 @@ public class World {
         for (MoveDirection d : A) myAnimal.move(d);
         System.out.println(myAnimal);
         /*
-        Do 10.
+        Do polecenia 10.
         1) Tablica dwuwymiarowa typu boolean
         2) Trzymanie zwierząt w liście
         Jeśli zwierząt jest mało, to lista będzie lepsza. W przeciwnym wypadku tablica będzie lepsza.
