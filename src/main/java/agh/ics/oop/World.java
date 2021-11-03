@@ -77,7 +77,7 @@ public class World {
         Do 10.
         1) Tablica dwuwymiarowa typu boolean
         2) Trzymanie zwierząt w liście
-        Jeśli zwierząt jest mało, to lista będzie lepsza. W przeciwnym przypadku tablica będzie lepsza.
+        Jeśli zwierząt jest mało, to lista będzie lepsza. W przeciwnym wypadku tablica będzie lepsza.
         */
     }
 }
