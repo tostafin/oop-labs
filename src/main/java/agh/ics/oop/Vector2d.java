@@ -38,7 +38,7 @@ public class Vector2d {
     }
 
     public int hashCode() {
-        return 37;
+        return this.x;
     }
 
     public boolean equals(Object other) {

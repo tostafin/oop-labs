@@ -69,4 +69,12 @@ public class Animal {
             animalsPosition = animalsPosition.subtract(movePosition);
         }
     }
+
+    public MapDirection getDirection() {
+        return animalsDirection;
+    }
+
+    public Vector2d getPosition() {
+        return animalsPosition;
+    }
 }
