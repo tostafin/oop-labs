@@ -75,7 +75,7 @@ public class World {
         System.out.println(myAnimal);
         /*
         Do 10.
-        1) Tablica dwuwymiarowa boolean
+        1) Tablica dwuwymiarowa typu boolean
         2) Trzymanie zwierząt w liście
         Którą opcję wybrać zależy od tego, ile jest zwierząt.
         */
