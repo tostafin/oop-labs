@@ -49,7 +49,7 @@ public class World {
                     break;
             }
         }
-        System.out.println("Start");
+//        System.out.println("Start");
 //        run(directions);
 //        Vector2d position1 = new Vector2d(1, 2);
 //        System.out.println(position1);
@@ -62,22 +62,23 @@ public class World {
 //        System.out.println(dir1.previous());
 //        System.out.println(dir1.toUnitVector());
 //        System.out.println("Stop");
-        Animal myAnimal = new Animal();
-        System.out.println(myAnimal);
+//        Animal myAnimal = new Animal();
+//        System.out.println(myAnimal);
 //        zwierzatko.move(MoveDirection.RIGHT);
 //        zwierzatko.move(MoveDirection.FORWARD);
 //        zwierzatko.move(MoveDirection.FORWARD);
 //        zwierzatko.move(MoveDirection.FORWARD);
-        String[] D = {"r", "f", "f", "forward"};
-        OptionsParser tmp = new OptionsParser();
-        MoveDirection[] A = tmp.parse(D);
-        for (MoveDirection d : A) myAnimal.move(d);
-        System.out.println(myAnimal);
+//        String[] D = {"r", "f", "f", "forward"};
+//        OptionsParser tmp = new OptionsParser();
+//        MoveDirection[] A = tmp.parse(D);
+//        for (MoveDirection d : A) myAnimal.move(d);
+//        System.out.println(myAnimal);
         /*
         Do polecenia 10.
         1) Tablica dwuwymiarowa typu boolean
         2) Trzymanie zwierząt w liście
         Jeśli zwierząt jest mało, to lista będzie lepsza. W przeciwnym wypadku tablica będzie lepsza.
         */
+
     }
 }
