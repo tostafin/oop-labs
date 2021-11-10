@@ -1,6 +1,9 @@
 package agh.ics.oop;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 public class World {
 
@@ -29,26 +32,26 @@ public class World {
     }
 
     public static void main(String[] args) {
-        Direction[] directions = new Direction[args.length];
-        for (int i = 0; i < args.length; i++) {
-            switch (args[i]) {
-                case "f":
-                    directions[i] = Direction.f;
-                    break;
-
-                case "b":
-                    directions[i] = Direction.b;
-                    break;
-
-                case "r":
-                    directions[i] = Direction.r;
-                    break;
-
-                case "l":
-                    directions[i] = Direction.l;
-                    break;
-            }
-        }
+//        Direction[] directions = new Direction[args.length];
+//        for (int i = 0; i < args.length; i++) {
+//            switch (args[i]) {
+//                case "f":
+//                    directions[i] = Direction.f;
+//                    break;
+//
+//                case "b":
+//                    directions[i] = Direction.b;
+//                    break;
+//
+//                case "r":
+//                    directions[i] = Direction.r;
+//                    break;
+//
+//                case "l":
+//                    directions[i] = Direction.l;
+//                    break;
+//            }
+//        }
 //        System.out.println("Start");
 //        run(directions);
 //        Vector2d position1 = new Vector2d(1, 2);
@@ -80,5 +83,12 @@ public class World {
         Jeśli zwierząt jest mało, to lista będzie lepsza. W przeciwnym wypadku tablica będzie lepsza.
         */
 
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4)};
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        System.out.println(map);
+        engine.run();
+        System.out.println(map);
     }
 }

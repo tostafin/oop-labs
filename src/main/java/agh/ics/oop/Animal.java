@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import java.util.Vector;
+
 public class Animal {
 //    private MapDirection animalsDirection = MapDirection.NORTH;
 //    private Vector2d animalsPosition = new Vector2d(2, 2);
@@ -70,21 +72,22 @@ public class Animal {
 //        }
 //    }
 //
-//    public MapDirection getDirection() {
-//        return animalsDirection;
-//    }
-//
-//    public Vector2d getPosition() {
-//        return animalsPosition;
-//    }
 
-    private IWorldMap animalsMap;
+    private IWorldMap map;
     private Vector2d animalsPos;
     private MapDirection animalsDir = MapDirection.NORTH;
 
     public Animal(IWorldMap map, Vector2d initialPosition) {
-        this.animalsMap = map;
+        this.map = map;
         this.animalsPos = initialPosition;
+    }
+
+    public MapDirection getAnimalsDir() {
+        return animalsDir;
+    }
+
+    public Vector2d getAnimalsPos() {
+        return animalsPos;
     }
 
     public String toString() {
@@ -104,6 +107,45 @@ public class Animal {
         return null;
     }
 
+    public Vector2d changeToUnitVector(MapDirection dir) {
+        switch (dir) {
+            case EAST:
+                return new Vector2d(1, 0);
+
+            case WEST:
+                return new Vector2d(-1, 0);
+
+            case NORTH:
+                return new Vector2d(0, 1);
+
+            case SOUTH:
+                return new Vector2d(0, -1);
+        }
+        return null;
+    }
+
     public void move(MoveDirection direction) {
+        switch (direction) {
+            case RIGHT:
+                this.animalsDir = this.animalsDir.next();
+                break;
+
+            case LEFT:
+                this.animalsDir = this.animalsDir.previous();
+                break;
+
+            case FORWARD:
+                if (this.map.canMoveTo(this.animalsPos.add(changeToUnitVector(this.animalsDir)))) {
+                    this.animalsPos = this.animalsPos.add(changeToUnitVector(this.animalsDir));
+                }
+                break;
+
+
+            case BACKWARD:
+                if (this.map.canMoveTo(this.animalsPos.subtract(changeToUnitVector(this.animalsDir)))) {
+                    this.animalsPos = this.animalsPos.subtract(changeToUnitVector(this.animalsDir));
+                }
+                break;
+        }
     }
 }
