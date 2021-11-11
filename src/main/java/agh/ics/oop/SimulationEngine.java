@@ -13,6 +13,11 @@ public class SimulationEngine implements IEngine {
     }
 
     @Override
+    public Vector2d[] getAnimalsPos() {
+        return animalsPos;
+    }
+
+    @Override
     public void run() {
         int movesNo = this.moves.length;
         int animalsNo = this.animalsPos.length;
