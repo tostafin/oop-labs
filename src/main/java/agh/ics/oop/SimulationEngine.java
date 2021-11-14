@@ -1,5 +1,7 @@
 package agh.ics.oop;
 
+import java.util.Arrays;
+
 public class SimulationEngine implements IEngine {
     private MoveDirection[] moves;
     private IWorldMap mapInstance;
@@ -14,7 +16,7 @@ public class SimulationEngine implements IEngine {
 
     @Override
     public Vector2d[] getAnimalsPos() {
-        return animalsPos;
+        return this.animalsPos;
     }
 
     @Override
