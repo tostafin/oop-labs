@@ -1,11 +1,9 @@
 package agh.ics.oop;
 
-import java.util.Arrays;
-
 public class SimulationEngine implements IEngine {
-    private MoveDirection[] moves;
-    private IWorldMap mapInstance;
-    private Vector2d[] animalsPos;
+    private final MoveDirection[] moves;
+    private final IWorldMap mapInstance;
+    private final Vector2d[] animalsPos;
 
     public SimulationEngine(MoveDirection[] moves, IWorldMap mapInstance, Vector2d[] initialPos) {
         this.moves = moves;

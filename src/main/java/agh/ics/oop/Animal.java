@@ -1,7 +1,5 @@
 package agh.ics.oop;
 
-import java.util.Vector;
-
 public class Animal {
 //    private MapDirection animalsDirection = MapDirection.NORTH;
 //    private Vector2d animalsPosition = new Vector2d(2, 2);
@@ -73,7 +71,7 @@ public class Animal {
 //    }
 //
 
-    private IWorldMap map;
+    private final IWorldMap map;
     private Vector2d animalsPos;
     private MapDirection animalsDir = MapDirection.NORTH;
 
