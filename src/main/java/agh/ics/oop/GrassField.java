@@ -6,38 +6,32 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class GrassField implements IWorldMap {
     private int n;
+    private Vector2d grassPos;
     private List<Animal> animals;
     private List<Grass> fields;
 
     public GrassField(int n) {
         this.n = n;
-        this.animals = new ArrayList<>();
         this.fields = new ArrayList<>();
         int maxLen = (int) Math.sqrt(this.n * 10);
-        while (this.fields.size() < this.n) {
-            int x = ThreadLocalRandom.current().nextInt(0, maxLen);
-            int y = ThreadLocalRandom.current().nextInt(0, maxLen);
-            Vector2d pos = new Vector2d(x, y);
-            boolean duplicate = false;
-            for (Grass g : this.fields) {
-                if (g.getPosition().equals(pos)) {
-                    duplicate = true;
-                    break;
-                }
-            }
-            if (!(duplicate)) this.fields.add(new Grass(new Vector2d(x, y)));
+        int x = ThreadLocalRandom.current().nextInt(0, maxLen);
+        int y = ThreadLocalRandom.current().nextInt(0, maxLen);
+        while (objectAt(new Vector2d(x, y)) instanceof Grass && isOccupied(new Vector2d(x, y))) {
+            x = ThreadLocalRandom.current().nextInt(0, maxLen);
+            y = ThreadLocalRandom.current().nextInt(0, maxLen);
         }
+        this.fields.add(new Grass(new Vector2d(x, y)));
     }
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        return !(this.isOccupied(position));
+        return objectAt(position) instanceof Animal && !(this.isOccupied(position));
     }
 
     @Override
     public boolean place(Animal animal) {
-        Vector2d animalsPos = animal.getAnimalsPos();
-        if (!(this.isOccupied(animalsPos))) {
+        Vector2d grassPos = animal.getAnimalsPos();
+        if (!(this.isOccupied(grassPos))) {
             this.animals.add(animal);
             return true;
         }
@@ -75,7 +69,7 @@ public class GrassField implements IWorldMap {
     }
 
     public String toString() {
-        MapVisualizer worldMap = new MapVisualizer(this);
+        MapVisualizer animalsMap = new MapVisualizer(this);
         int xMax = Integer.MIN_VALUE, yMax = Integer.MIN_VALUE;
         int xMin = Integer.MAX_VALUE, yMin = Integer.MAX_VALUE;
         for (Grass g : this.fields) {
@@ -94,6 +88,6 @@ public class GrassField implements IWorldMap {
 
         Vector2d vector1 = new Vector2d(xMin, yMin);
         Vector2d vector2 = new Vector2d(xMax, yMax);
-        return worldMap.draw(vector1, vector2);
+        return animalsMap.draw(vector1, vector2);
     }
 }

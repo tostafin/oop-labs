@@ -7,10 +7,12 @@ public class Grass {
     }
 
     public Vector2d getPosition() {
-        return this.position;
+        return position;
     }
 
     public String toString() {
         return "*";
     }
+
+
 }

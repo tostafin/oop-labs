@@ -22,12 +22,11 @@ public class SimulationEngine implements IEngine {
         int movesNo = this.moves.length;
         int animalsNo = this.animalsPos.length;
         for (int i = 0; i < movesNo; i++) {
-            if (this.mapInstance.objectAt(this.animalsPos[i % animalsNo]) instanceof Animal) {
-                Animal animal = (Animal) (this.mapInstance.objectAt(this.animalsPos[i % animalsNo]));
+            Animal animal = (Animal) (this.mapInstance.objectAt(this.animalsPos[i % animalsNo]));
+            if (animal != null) {
                 animal.move(this.moves[i]);
                 this.animalsPos[i % animalsNo] = animal.getAnimalsPos();
             }
-
         }
     }
 }
