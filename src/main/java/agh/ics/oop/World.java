@@ -80,13 +80,13 @@ public class World {
         Jeśli zwierząt jest mało, to lista będzie lepsza. W przeciwnym wypadku tablica będzie lepsza.
         */
 
-        MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new RectangularMap(10, 5);
-        Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4)};
-        IEngine engine = new SimulationEngine(directions, map, positions);
-        System.out.println(map);
-        engine.run();
-        System.out.println(map);
+//        MoveDirection[] directions = new OptionsParser().parse(args);
+//        IWorldMap map = new RectangularMap(10, 5);
+//        Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4)};
+//        IEngine engine = new SimulationEngine(directions, map, positions);
+//        System.out.println(map);
+//        engine.run();
+//        System.out.println(map);
 
         /*
         Przy tych samych wartościach w metodach lepsze jest dziedziczenie. ewentualną różnicę można wtedy załatwić
@@ -94,6 +94,12 @@ public class World {
         Jeśli chcemy mieć metody o tej samej nazwie, ale zwracające co innego, to lepszy interfejs.
         */
 
-
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap christmas = new GrassField(10);
+        Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4)};
+        IEngine engine = new SimulationEngine(directions, christmas, positions);
+        System.out.println(christmas);
+        engine.run();
+        System.out.println(christmas);
     }
 }
