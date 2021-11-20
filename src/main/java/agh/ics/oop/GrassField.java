@@ -1,10 +1,12 @@
 package agh.ics.oop;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class GrassField implements IWorldMap {
+public class GrassField extends AbstractWorldMap {
     private int n;
     private List<Animal> animals;
     private List<Grass> fields;
@@ -31,69 +33,49 @@ public class GrassField implements IWorldMap {
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        return !(this.isOccupied(position));
-    }
-
-    @Override
-    public boolean place(Animal animal) {
-        Vector2d animalsPos = animal.getAnimalsPos();
-        if (!(this.isOccupied(animalsPos))) {
-            this.animals.add(animal);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isOccupied(Vector2d position) {
-        for (Grass g : this.fields) {
-            if (g.getPosition().equals(position)) {
-                return true;
-            }
-        }
-
-        for (Animal a : this.animals) {
-            if (a.getAnimalsPos().equals(position)) {
-                return true;
-            }
-        }
-
-        return false;
+        return super.canMoveTo(position) || objectAt(position) instanceof Grass;
     }
 
     @Override
     public Object objectAt(Vector2d position) {
+        Object animalCheck = super.objectAt(position);
+        if (animalCheck != null) return animalCheck;
         for (Grass g : this.fields) {
             if (g.getPosition().equals(position)) return g;
         }
-
-        for (Animal a : this.animals) {
-            if (a.getAnimalsPos().equals(position)) return a;
-        }
-
         return null;
     }
 
-    public String toString() {
-        MapVisualizer worldMap = new MapVisualizer(this);
-        int xMax = Integer.MIN_VALUE, yMax = Integer.MIN_VALUE;
+    public Vector2d getLowerLeft() {
         int xMin = Integer.MAX_VALUE, yMin = Integer.MAX_VALUE;
         for (Grass g : this.fields) {
-            xMax = Math.max(xMax, g.getPosition().x);
-            yMax = Math.max(yMax, g.getPosition().y);
             xMin = Math.min(xMin, g.getPosition().x);
             yMin = Math.min(yMin, g.getPosition().y);
         }
 
         for (Animal a : this.animals) {
-            xMax = Math.max(xMax, a.getAnimalsPos().x);
-            yMax = Math.max(yMax, a.getAnimalsPos().y);
             xMin = Math.min(xMin, a.getAnimalsPos().x);
             yMin = Math.min(yMin, a.getAnimalsPos().y);
         }
 
-        Vector2d vector1 = new Vector2d(xMin, yMin);
-        Vector2d vector2 = new Vector2d(xMax, yMax);
-        return worldMap.draw(vector1, vector2);
+        return new Vector2d(xMin, yMin);
+    }
+
+    public Vector2d getUpperRight() {
+        int xMax = Integer.MIN_VALUE, yMax = Integer.MIN_VALUE;
+        for (Grass g : this.fields) {
+            xMax = Math.max(xMax, g.getPosition().x);
+            yMax = Math.max(yMax, g.getPosition().y);
+        }
+        for (Animal a : this.animals) {
+            xMax = Math.max(xMax, a.getAnimalsPos().x);
+            yMax = Math.max(yMax, a.getAnimalsPos().y);
+        }
+
+        return new Vector2d(xMax, yMax);
+    }
+
+    public String toString() {
+        return super.toString();
     }
 }
