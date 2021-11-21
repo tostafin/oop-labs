@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractWorldMap implements IWorldMap {
-    private List<Animal> animals;
+    protected List<Animal> animals;
     protected abstract Vector2d getLowerLeft();
     protected abstract Vector2d getUpperRight();
 

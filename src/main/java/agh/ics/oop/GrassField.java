@@ -1,19 +1,15 @@
 package agh.ics.oop;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Vector;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GrassField extends AbstractWorldMap {
     private int n;
-    private List<Animal> animals;
     private List<Grass> fields;
 
     public GrassField(int n) {
         this.n = n;
-        this.animals = new ArrayList<>();
         this.fields = new ArrayList<>();
         int maxLen = (int) Math.sqrt(this.n * 10);
         while (this.fields.size() < this.n) {
@@ -34,6 +30,16 @@ public class GrassField extends AbstractWorldMap {
     @Override
     public boolean canMoveTo(Vector2d position) {
         return super.canMoveTo(position) || objectAt(position) instanceof Grass;
+    }
+
+    public boolean isOccupied(Vector2d position) {
+        if (super.isOccupied(position)) return true;
+        for (Grass g : this.fields) {
+            if (g.getPosition().equals(position)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -73,9 +79,5 @@ public class GrassField extends AbstractWorldMap {
         }
 
         return new Vector2d(xMax, yMax);
-    }
-
-    public String toString() {
-        return super.toString();
     }
 }
