@@ -89,6 +89,7 @@ public class World {
 //        System.out.println(map);
 
         /*
+        Wybór pomiędzy interfejsem a dziedzieczeniem:
         Przy tych samych wartościach w metodach lepsze jest dziedziczenie. ewentualną różnicę można wtedy załatwić
         przy pomocy słowa kluczowego super.
         Jeśli chcemy mieć metody o tej samej nazwie, ale zwracające co innego, to lepszy interfejs.
