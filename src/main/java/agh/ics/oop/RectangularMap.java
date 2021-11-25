@@ -1,16 +1,21 @@
 package agh.ics.oop;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RectangularMap extends AbstractWorldMap {
     private int width, height;
-    private List<Animal> animals;
+//    private List<Animal> animals;
+    private Map<Vector2d, Animal> animals;
 
     public RectangularMap(int width, int height) {
         this.width = width;
         this.height = height;
-        this.animals = new ArrayList<>();
+//        this.animals = new ArrayList<>();
+        this.animals = new LinkedHashMap<>();
+
     }
 
     @Override

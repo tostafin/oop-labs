@@ -59,9 +59,10 @@ public class GrassField extends AbstractWorldMap {
             yMin = Math.min(yMin, g.getPosition().y);
         }
 
-        for (Animal a : this.animals) {
-            xMin = Math.min(xMin, a.getAnimalsPos().x);
-            yMin = Math.min(yMin, a.getAnimalsPos().y);
+        for (Vector2d v : this.animals.keySet()) {
+//            System.out.println(this.animals.get(v).getAnimalsPos().x);
+            xMin = Math.min(xMin, this.animals.get(v).getAnimalsPos().x);
+            yMin = Math.min(yMin, this.animals.get(v).getAnimalsPos().y);
         }
 
         return new Vector2d(xMin, yMin);
@@ -73,9 +74,9 @@ public class GrassField extends AbstractWorldMap {
             xMax = Math.max(xMax, g.getPosition().x);
             yMax = Math.max(yMax, g.getPosition().y);
         }
-        for (Animal a : this.animals) {
-            xMax = Math.max(xMax, a.getAnimalsPos().x);
-            yMax = Math.max(yMax, a.getAnimalsPos().y);
+        for (Vector2d v : this.animals.keySet()) {
+            xMax = Math.max(xMax, this.animals.get(v).getAnimalsPos().x);
+            yMax = Math.max(yMax, this.animals.get(v).getAnimalsPos().y);
         }
 
         return new Vector2d(xMax, yMax);
