@@ -128,6 +128,7 @@ public class Animal {
     }
 
     public void move(MoveDirection direction) {
+        Vector2d oldPos = this.animalsPos;
         switch (direction) {
             case RIGHT:
                 this.animalsDir = this.animalsDir.next();
@@ -141,6 +142,7 @@ public class Animal {
                 if (this.map.canMoveTo(this.animalsPos.add(changeToUnitVector(this.animalsDir)))) {
                     this.animalsPos = this.animalsPos.add(changeToUnitVector(this.animalsDir));
                 }
+                positionChanged(oldPos, this.animalsPos);
                 break;
 
 
@@ -148,19 +150,20 @@ public class Animal {
                 if (this.map.canMoveTo(this.animalsPos.subtract(changeToUnitVector(this.animalsDir)))) {
                     this.animalsPos = this.animalsPos.subtract(changeToUnitVector(this.animalsDir));
                 }
+                positionChanged(oldPos, this.animalsPos);
                 break;
         }
     }
 
-    void addObserver(IPositionChangeObserver observer) {
+    public void addObserver(IPositionChangeObserver observer) {
         this.observers.add(observer);
     }
 
-    void removeObserver(IPositionChangeObserver observer) {
+    public void removeObserver(IPositionChangeObserver observer) {
         this.observers.remove(observer);
     }
 
-    void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
+    public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
         for (IPositionChangeObserver obs : this.observers) obs.positionChanged(oldPosition, newPosition);
     }
 }
