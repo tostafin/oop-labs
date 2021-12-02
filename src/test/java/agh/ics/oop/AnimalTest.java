@@ -74,9 +74,9 @@ public class AnimalTest {
 
     @Test
     public void testParser() {
-        String[] D = {"r", "forward", "right", "left", "l", "backward", "f", "b"};
-        OptionsParser tmp = new OptionsParser();
-        MoveDirection[] A = tmp.parse(D);
+        String[] D1 = {"r", "forward", "right", "left", "l", "backward", "f", "b"};
+        OptionsParser tmp1 = new OptionsParser();
+        MoveDirection[] A = tmp1.parse(D1);
         assertEquals(A[0], MoveDirection.RIGHT);
         assertEquals(A[1], MoveDirection.FORWARD);
         assertEquals(A[2], MoveDirection.RIGHT);
@@ -85,5 +85,11 @@ public class AnimalTest {
         assertEquals(A[5], MoveDirection.BACKWARD);
         assertEquals(A[6], MoveDirection.FORWARD);
         assertEquals(A[7], MoveDirection.BACKWARD);
+        String[] D2 = {"r", "forward", "right", "left", "l", "backward", "f", "jghghgfhgfhgfhgf"};
+        OptionsParser tmp2 = new OptionsParser();
+        assertThrows(IllegalArgumentException.class,
+                ()->{
+                    MoveDirection[] B = tmp2.parse(D2);
+                });
     }
 }

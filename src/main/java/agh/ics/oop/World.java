@@ -94,13 +94,17 @@ public class World {
         przy pomocy słowa kluczowego super.
         Jeśli chcemy mieć metody o tej samej nazwie, ale zwracające co innego, to lepszy interfejs.
         */
+        try {
+            MoveDirection[] directions = new OptionsParser().parse(args);
+            IWorldMap christmas = new GrassField(10);
+            Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(2, 2)};
+            IEngine engine = new SimulationEngine(directions, christmas, positions);
+            System.out.println(christmas);
+            engine.run();
+            System.out.println(christmas);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
+        }
 
-        MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap christmas = new GrassField(10);
-        Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4)};
-        IEngine engine = new SimulationEngine(directions, christmas, positions);
-        System.out.println(christmas);
-        engine.run();
-        System.out.println(christmas);
     }
 }

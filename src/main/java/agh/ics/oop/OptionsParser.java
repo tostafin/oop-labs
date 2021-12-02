@@ -5,10 +5,26 @@ public class OptionsParser {
         MoveDirection[] directionsTmp = new MoveDirection[stringDirections.length];
         int idx = 0;
         for (String s : stringDirections) {
-            if (s.equals("f") || s.equals("forward")) directionsTmp[idx++] = MoveDirection.FORWARD;
-            if (s.equals("b") || s.equals("backward")) directionsTmp[idx++] = MoveDirection.BACKWARD;
-            if (s.equals("l") || s.equals("left")) directionsTmp[idx++] = MoveDirection.LEFT;
-            if (s.equals("r") || s.equals("right")) directionsTmp[idx++] = MoveDirection.RIGHT;
+            switch (s) {
+                case "f":
+                case "forward":
+                    directionsTmp[idx++] = MoveDirection.FORWARD;
+                    break;
+                case "b":
+                case "backward":
+                    directionsTmp[idx++] = MoveDirection.BACKWARD;
+                    break;
+                case "l":
+                case "left":
+                    directionsTmp[idx++] = MoveDirection.LEFT;
+                    break;
+                case "r":
+                case "right":
+                    directionsTmp[idx++] = MoveDirection.RIGHT;
+                    break;
+                default:
+                    throw new IllegalArgumentException(s + " is not legal move specification");
+            }
         }
         MoveDirection[] res = new MoveDirection[idx];
         System.arraycopy(directionsTmp, 0, res, 0, idx);
