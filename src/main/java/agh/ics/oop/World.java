@@ -1,7 +1,5 @@
 package agh.ics.oop;
 
-import java.util.Arrays;
-
 public class World {
 
     public static void run(Direction[] dirs) {
@@ -93,17 +91,18 @@ public class World {
         Przy tych samych wartościach w metodach lepsze jest dziedziczenie. ewentualną różnicę można wtedy załatwić
         przy pomocy słowa kluczowego super.
         Jeśli chcemy mieć metody o tej samej nazwie, ale zwracające co innego, to lepszy interfejs.
+        Sekwencja do testowania: "f b r l f f r r f f f f f f f f"
         */
         try {
             MoveDirection[] directions = new OptionsParser().parse(args);
-            IWorldMap christmas = new GrassField(10);
-            Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4), new Vector2d(2, 2)};
-            IEngine engine = new SimulationEngine(directions, christmas, positions);
-            System.out.println(christmas);
+            IWorldMap map = new GrassField(10);
+            Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4)};
+            IEngine engine = new SimulationEngine(directions, map, positions);
+            System.out.println(map);
             engine.run();
-            System.out.println(christmas);
+            System.out.println(map);
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
     }

@@ -29,7 +29,7 @@ class GrassFieldTest {
         assertTrue(grassFields.place(Gregory));
         assertTrue(grassFields.place(Johannes));
         assertTrue(grassFields.place(Margaret));
-        assertFalse(grassFields.place(Carlson));
+        assertThrows(IllegalArgumentException.class, ()-> grassFields.place(Carlson));
     }
 
     @Test
@@ -40,9 +40,6 @@ class GrassFieldTest {
         assertTrue(grassFields.isOccupied(Gregory.getAnimalsPos()));
         assertTrue(grassFields.isOccupied(Johannes.getAnimalsPos()));
         assertTrue(grassFields.isOccupied(Margaret.getAnimalsPos()));
-        assertFalse(grassFields.isOccupied(new Vector2d(2, 3)));
-        assertFalse(grassFields.isOccupied(new Vector2d(7, 4)));
-        assertFalse(grassFields.isOccupied(new Vector2d(2, 3)));
     }
 
     @Test

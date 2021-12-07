@@ -5,14 +5,13 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GrassField extends AbstractWorldMap {
-    private int n;
-    private List<Grass> fields;
+    private final List<Grass> fields;
+    private final MapBoundary mapBoundary = new MapBoundary();
 
     public GrassField(int n) {
-        this.n = n;
         this.fields = new ArrayList<>();
-        int maxLen = (int) Math.sqrt(this.n * 10);
-        while (this.fields.size() < this.n) {
+        int maxLen = (int) Math.sqrt(n * 10);
+        while (this.fields.size() < n) {
             int x = ThreadLocalRandom.current().nextInt(0, maxLen);
             int y = ThreadLocalRandom.current().nextInt(0, maxLen);
             Vector2d pos = new Vector2d(x, y);
@@ -23,7 +22,11 @@ public class GrassField extends AbstractWorldMap {
                     break;
                 }
             }
-            if (!(duplicate)) this.fields.add(new Grass(new Vector2d(x, y)));
+            if (!(duplicate)) {
+                Grass grass = new Grass(new Vector2d(x, y));
+                this.fields.add(grass);
+                this.mapBoundary.addGrass(grass);
+            }
         }
     }
 
@@ -32,6 +35,17 @@ public class GrassField extends AbstractWorldMap {
         return super.canMoveTo(position) || objectAt(position) instanceof Grass;
     }
 
+    @Override
+    public boolean place(Animal animal) {
+        boolean animalPlaced = super.place(animal);
+        if (animalPlaced) {
+            this.mapBoundary.addAnimal(animal);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean isOccupied(Vector2d position) {
         if (super.isOccupied(position)) return true;
         for (Grass g : this.fields) {
@@ -52,33 +66,13 @@ public class GrassField extends AbstractWorldMap {
         return null;
     }
 
+    @Override
     public Vector2d getLowerLeft() {
-        int xMin = Integer.MAX_VALUE, yMin = Integer.MAX_VALUE;
-        for (Grass g : this.fields) {
-            xMin = Math.min(xMin, g.getPosition().x);
-            yMin = Math.min(yMin, g.getPosition().y);
-        }
-
-        for (Vector2d v : this.animals.keySet()) {
-//            System.out.println(this.animals.get(v).getAnimalsPos().x);
-            xMin = Math.min(xMin, this.animals.get(v).getAnimalsPos().x);
-            yMin = Math.min(yMin, this.animals.get(v).getAnimalsPos().y);
-        }
-
-        return new Vector2d(xMin, yMin);
+        return mapBoundary.getLowerLeft();
     }
 
+    @Override
     public Vector2d getUpperRight() {
-        int xMax = Integer.MIN_VALUE, yMax = Integer.MIN_VALUE;
-        for (Grass g : this.fields) {
-            xMax = Math.max(xMax, g.getPosition().x);
-            yMax = Math.max(yMax, g.getPosition().y);
-        }
-        for (Vector2d v : this.animals.keySet()) {
-            xMax = Math.max(xMax, this.animals.get(v).getAnimalsPos().x);
-            yMax = Math.max(yMax, this.animals.get(v).getAnimalsPos().y);
-        }
-
-        return new Vector2d(xMax, yMax);
+        return mapBoundary.getUpperRight();
     }
 }

@@ -35,10 +35,7 @@ class RectangularMapTest {
         assertTrue(map.place(Gregory));
         assertTrue(map.place(Johannes));
         assertTrue(map.place(Margaret));
-        assertThrows(IllegalArgumentException.class,
-                ()->{
-                    map.place(Carlson);
-                });
+        assertThrows(IllegalArgumentException.class, ()-> map.place(Carlson));
     }
 
     @Test

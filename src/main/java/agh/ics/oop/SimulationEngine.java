@@ -3,18 +3,13 @@ package agh.ics.oop;
 public class SimulationEngine implements IEngine {
     private final MoveDirection[] moves;
     private final IWorldMap mapInstance;
-    private final Vector2d[] animalsPos;
+    Vector2d[] animalsPos;
 
     public SimulationEngine(MoveDirection[] moves, IWorldMap mapInstance, Vector2d[] initialPos) {
         this.moves = moves;
         this.mapInstance = mapInstance;
         this.animalsPos = initialPos;
         for (Vector2d v : this.animalsPos) this.mapInstance.place(new Animal(this.mapInstance, v));
-    }
-
-    @Override
-    public Vector2d[] getAnimalsPos() {
-        return this.animalsPos;
     }
 
     @Override

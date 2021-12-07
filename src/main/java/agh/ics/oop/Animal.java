@@ -10,11 +10,11 @@ public class Animal {
 //    public String toString() {
 //        return "Kierunek: " + animalsDirection + ", pozycja: " + animalsPosition;
 //    }
-//
-//    boolean isAt(Vector2d position) {
-//        return position.equals(animalsPosition);
-//    }
-//
+
+    boolean isAt(Vector2d position) {
+        return position.equals(animalsPos);
+    }
+
 //    public void move(MoveDirection direction) {
 //        Vector2d movePosition = null;
 //        switch (direction) {
@@ -77,7 +77,7 @@ public class Animal {
     private final IWorldMap map;
     private Vector2d animalsPos;
     private MapDirection animalsDir = MapDirection.NORTH;
-    private List<IPositionChangeObserver> observers;
+    private final List<IPositionChangeObserver> observers;
 
     public Animal(IWorldMap map, Vector2d initialPosition) {
         this.map = map;
@@ -91,6 +91,10 @@ public class Animal {
 
     public Vector2d getAnimalsPos() {
         return animalsPos;
+    }
+
+    public IWorldMap getMap() {
+        return map;
     }
 
     public String toString() {
