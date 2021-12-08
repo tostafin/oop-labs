@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GrassField extends AbstractWorldMap {
-    private final List<Grass> fields;
+    public final List<Grass> fields;
     private final MapBoundary mapBoundary = new MapBoundary();
 
     public GrassField(int n) {

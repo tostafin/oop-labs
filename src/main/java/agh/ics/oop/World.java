@@ -102,8 +102,7 @@ public class World {
             engine.run();
             System.out.println(map);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-
     }
 }
