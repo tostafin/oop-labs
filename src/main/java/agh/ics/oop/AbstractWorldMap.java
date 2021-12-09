@@ -19,7 +19,7 @@ public abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObse
 
     @Override
     public boolean place(Animal animal) {
-        Vector2d animalPos = animal.getAnimalsPos();
+        Vector2d animalPos = animal.getPosition();
         if (this.canMoveTo(animalPos)) {
             this.animals.put(animalPos, animal);
             animal.addObserver(this);

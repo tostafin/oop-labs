@@ -43,9 +43,9 @@ class RectangularMapTest {
         map.place(Gregory);
         map.place(Johannes);
         map.place(Margaret);
-        assertTrue(map.isOccupied(Gregory.getAnimalsPos()));
-        assertTrue(map.isOccupied(Johannes.getAnimalsPos()));
-        assertTrue(map.isOccupied(Margaret.getAnimalsPos()));
+        assertTrue(map.isOccupied(Gregory.getPosition()));
+        assertTrue(map.isOccupied(Johannes.getPosition()));
+        assertTrue(map.isOccupied(Margaret.getPosition()));
         assertFalse(map.isOccupied(new Vector2d(2, 3)));
         assertFalse(map.isOccupied(new Vector2d(7, 4)));
         assertFalse(map.isOccupied(new Vector2d(2, 3)));
@@ -56,8 +56,8 @@ class RectangularMapTest {
         map.place(Gregory);
         map.place(Johannes);
         map.place(Margaret);
-        assertEquals(map.objectAt(Gregory.getAnimalsPos()), Gregory);
-        assertEquals(map.objectAt(Johannes.getAnimalsPos()), Johannes);
-        assertEquals(map.objectAt(Margaret.getAnimalsPos()), Margaret);
+        assertEquals(map.objectAt(Gregory.getPosition()), Gregory);
+        assertEquals(map.objectAt(Johannes.getPosition()), Johannes);
+        assertEquals(map.objectAt(Margaret.getPosition()), Margaret);
     }
 }

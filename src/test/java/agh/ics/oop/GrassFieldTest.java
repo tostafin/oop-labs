@@ -37,9 +37,9 @@ class GrassFieldTest {
         grassFields.place(Gregory);
         grassFields.place(Johannes);
         grassFields.place(Margaret);
-        assertTrue(grassFields.isOccupied(Gregory.getAnimalsPos()));
-        assertTrue(grassFields.isOccupied(Johannes.getAnimalsPos()));
-        assertTrue(grassFields.isOccupied(Margaret.getAnimalsPos()));
+        assertTrue(grassFields.isOccupied(Gregory.getPosition()));
+        assertTrue(grassFields.isOccupied(Johannes.getPosition()));
+        assertTrue(grassFields.isOccupied(Margaret.getPosition()));
     }
 
     @Test
@@ -47,8 +47,8 @@ class GrassFieldTest {
         grassFields.place(Gregory);
         grassFields.place(Johannes);
         grassFields.place(Margaret);
-        assertEquals(grassFields.objectAt(Gregory.getAnimalsPos()), Gregory);
-        assertEquals(grassFields.objectAt(Johannes.getAnimalsPos()), Johannes);
-        assertEquals(grassFields.objectAt(Margaret.getAnimalsPos()), Margaret);
+        assertEquals(grassFields.objectAt(Gregory.getPosition()), Gregory);
+        assertEquals(grassFields.objectAt(Johannes.getPosition()), Johannes);
+        assertEquals(grassFields.objectAt(Margaret.getPosition()), Margaret);
     }
 }

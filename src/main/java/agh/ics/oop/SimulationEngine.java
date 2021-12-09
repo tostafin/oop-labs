@@ -20,7 +20,7 @@ public class SimulationEngine implements IEngine {
             if (this.mapInstance.objectAt(this.animalsPos[i % animalsNo]) instanceof Animal) {
                 Animal animal = (Animal) (this.mapInstance.objectAt(this.animalsPos[i % animalsNo]));
                 animal.move(this.moves[i]);
-                this.animalsPos[i % animalsNo] = animal.getAnimalsPos();
+                this.animalsPos[i % animalsNo] = animal.getPosition();
             }
 
         }

@@ -5,6 +5,8 @@ public class OptionsParser {
         MoveDirection[] directionsTmp = new MoveDirection[stringDirections.length];
         int idx = 0;
         for (String s : stringDirections) {
+            System.out.println(s);
+
             switch (s) {
                 case "f":
                 case "forward":

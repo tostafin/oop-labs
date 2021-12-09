@@ -3,7 +3,7 @@ package agh.ics.oop;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Animal {
+public class Animal implements IMapElement {
 //    private MapDirection animalsDirection = MapDirection.NORTH;
 //    private Vector2d animalsPosition = new Vector2d(2, 2);
 //
@@ -89,7 +89,8 @@ public class Animal {
         return animalsDir;
     }
 
-    public Vector2d getAnimalsPos() {
+    @Override
+    public Vector2d getPosition() {
         return animalsPos;
     }
 
@@ -170,4 +171,25 @@ public class Animal {
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
         for (IPositionChangeObserver obs : this.observers) obs.positionChanged(oldPosition, newPosition);
     }
+
+    @Override
+    public String getSource() {
+        switch (this.animalsDir) {
+            case NORTH:
+                return "src/main/resources/up.png";
+            case SOUTH:
+                return "src/main/resources/down.png";
+            case WEST:
+                return "src/main/resources/left.png";
+            case EAST:
+                return "src/main/resources/right.png";
+        }
+        return null;
+    }
+
+    // TODO: delete getAnimalPos() and replace it with getPosition()
+//    @Override
+//    public Vector2d getPosition() {
+//        return this.animalsPos;
+//    }
 }

@@ -30,46 +30,46 @@ public class AnimalTest {
     @Test
     public void testAnimalsPosition() {
         myAnimal.move(MoveDirection.FORWARD);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(2, 3));
+        assertEquals(myAnimal.getPosition(), new Vector2d(2, 3));
 
         myAnimal.move(MoveDirection.FORWARD);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(2, 4));
+        assertEquals(myAnimal.getPosition(), new Vector2d(2, 4));
 
         myAnimal.move(MoveDirection.FORWARD);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(2, 4));
+        assertEquals(myAnimal.getPosition(), new Vector2d(2, 4));
 
         myAnimal.move(MoveDirection.BACKWARD);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(2, 3));
+        assertEquals(myAnimal.getPosition(), new Vector2d(2, 3));
 
         myAnimal.move(MoveDirection.RIGHT);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(2, 3));
+        assertEquals(myAnimal.getPosition(), new Vector2d(2, 3));
 
         myAnimal.move(MoveDirection.LEFT);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(2, 3));
+        assertEquals(myAnimal.getPosition(), new Vector2d(2, 3));
 
         myAnimal.move(MoveDirection.LEFT);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(2, 3));
+        assertEquals(myAnimal.getPosition(), new Vector2d(2, 3));
 
         myAnimal.move(MoveDirection.BACKWARD);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(3, 3));
+        assertEquals(myAnimal.getPosition(), new Vector2d(3, 3));
     }
 
     @Test
     public void testOutOfMapExit() {
         for (int i = 0; i < 3; i++) myAnimal.move(MoveDirection.FORWARD);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(2, 4));
+        assertEquals(myAnimal.getPosition(), new Vector2d(2, 4));
 
         myAnimal.move(MoveDirection.RIGHT);
         for (int i = 0; i < 3; i++) myAnimal.move(MoveDirection.FORWARD);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(4, 4));
+        assertEquals(myAnimal.getPosition(), new Vector2d(4, 4));
 
         myAnimal.move(MoveDirection.LEFT);
         for (int i = 0; i < 5; i++) myAnimal.move(MoveDirection.BACKWARD);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(4, 0));
+        assertEquals(myAnimal.getPosition(), new Vector2d(4, 0));
 
         myAnimal.move(MoveDirection.LEFT);
         for (int i = 0; i < 5; i++) myAnimal.move(MoveDirection.FORWARD);
-        assertEquals(myAnimal.getAnimalsPos(), new Vector2d(0, 0));
+        assertEquals(myAnimal.getPosition(), new Vector2d(0, 0));
     }
 
     @Test

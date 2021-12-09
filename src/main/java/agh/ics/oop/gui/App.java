@@ -29,13 +29,13 @@ public class App extends Application {
         gridPane.setGridLinesVisible(true);
 
         for (int i = 0; i <= width; i++) {
-            ColumnConstraints columnConstraints = new ColumnConstraints(20);
+            ColumnConstraints columnConstraints = new ColumnConstraints(50);
             columnConstraints.setPercentWidth(100.0 / width);
             gridPane.getColumnConstraints().add(columnConstraints);
         }
 
         for (int i = 0; i <= height; i++) {
-            RowConstraints rowConstraints = new RowConstraints(20);
+            RowConstraints rowConstraints = new RowConstraints(50);
             rowConstraints.setPercentHeight(100.0 / height);
             gridPane.getRowConstraints().add(rowConstraints);
         }
