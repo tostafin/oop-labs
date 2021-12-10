@@ -7,12 +7,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import agh.ics.oop.*;
 
+import java.io.FileNotFoundException;
+
 public class App extends Application {
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws FileNotFoundException {
         String[] args = getParameters().getRaw().toArray(new String[0]);
         MoveDirection[] directions = new OptionsParser().parse(args);
         GrassField map = new GrassField(10);
@@ -29,13 +32,13 @@ public class App extends Application {
         gridPane.setGridLinesVisible(true);
 
         for (int i = 0; i <= width; i++) {
-            ColumnConstraints columnConstraints = new ColumnConstraints(50);
+            ColumnConstraints columnConstraints = new ColumnConstraints(70);
             columnConstraints.setPercentWidth(100.0 / width);
             gridPane.getColumnConstraints().add(columnConstraints);
         }
 
         for (int i = 0; i <= height; i++) {
-            RowConstraints rowConstraints = new RowConstraints(50);
+            RowConstraints rowConstraints = new RowConstraints(70);
             rowConstraints.setPercentHeight(100.0 / height);
             gridPane.getRowConstraints().add(rowConstraints);
         }
@@ -46,21 +49,36 @@ public class App extends Application {
             yDiff -= 2;
             for (int j = 0; j <= width; j++) {
                 String character = null;
+                IMapElement elem = null;
                 if (i == 0 && j == 0) character = "y/x";
                 else if (i == 0) character = String.valueOf(lowerLeft.x + j - 1);
                 else if (j == 0) character = String.valueOf(upperRight.y - i + 1);
                 else {
                     Object obj = map.objectAt(new Vector2d(j + xDiff, i + yDiff));
-                    if (obj != null) character = obj.toString();
+                    elem = (IMapElement) obj;
                 }
-                Label label = new Label(character);
-                GridPane.setConstraints(label, j, i);
-                GridPane.setHalignment(label, HPos.CENTER);
-                gridPane.add(label, j, i);
+
+                if (elem != null) {
+                    VBox vBox;
+                    try {
+                        vBox = new GuiElementBox(elem).createImage();
+                    } catch (FileNotFoundException e) {
+                        throw new FileNotFoundException("File hasn't been found!");
+                    }
+                    GridPane.setConstraints(vBox, j, i);
+                    GridPane.setHalignment(vBox, HPos.CENTER);
+                    gridPane.add(vBox, j, i);
+                }
+                else {
+                    Label label = new Label(character);
+                    GridPane.setConstraints(label, j, i);
+                    GridPane.setHalignment(label, HPos.CENTER);
+                    gridPane.add(label, j, i);
+                }
             }
         }
 
-        Scene scene = new Scene(gridPane, 50 * width, 50 * height);
+        Scene scene = new Scene(gridPane, 70 * width, 70 * height);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

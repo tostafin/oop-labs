@@ -186,10 +186,4 @@ public class Animal implements IMapElement {
         }
         return null;
     }
-
-    // TODO: delete getAnimalPos() and replace it with getPosition()
-//    @Override
-//    public Vector2d getPosition() {
-//        return this.animalsPos;
-//    }
 }
