@@ -5,8 +5,6 @@ public class OptionsParser {
         MoveDirection[] directionsTmp = new MoveDirection[stringDirections.length];
         int idx = 0;
         for (String s : stringDirections) {
-            System.out.println(s);
-
             switch (s) {
                 case "f":
                 case "forward":
@@ -25,7 +23,7 @@ public class OptionsParser {
                     directionsTmp[idx++] = MoveDirection.RIGHT;
                     break;
                 default:
-                    throw new IllegalArgumentException(s + " is not legal move specification");
+                    throw new IllegalArgumentException(s + " is not a legal move specification");
             }
         }
         MoveDirection[] res = new MoveDirection[idx];

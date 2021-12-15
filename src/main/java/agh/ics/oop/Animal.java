@@ -11,9 +11,9 @@ public class Animal implements IMapElement {
 //        return "Kierunek: " + animalsDirection + ", pozycja: " + animalsPosition;
 //    }
 
-    boolean isAt(Vector2d position) {
-        return position.equals(animalsPos);
-    }
+//    boolean isAt(Vector2d position) {
+//        return position.equals(animalsPos);
+//    }
 
 //    public void move(MoveDirection direction) {
 //        Vector2d movePosition = null;
@@ -146,16 +146,16 @@ public class Animal implements IMapElement {
             case FORWARD:
                 if (this.map.canMoveTo(this.animalsPos.add(changeToUnitVector(this.animalsDir)))) {
                     this.animalsPos = this.animalsPos.add(changeToUnitVector(this.animalsDir));
+                    positionChanged(oldPos, this.animalsPos);
                 }
-                positionChanged(oldPos, this.animalsPos);
                 break;
 
 
             case BACKWARD:
                 if (this.map.canMoveTo(this.animalsPos.subtract(changeToUnitVector(this.animalsDir)))) {
                     this.animalsPos = this.animalsPos.subtract(changeToUnitVector(this.animalsDir));
+                    positionChanged(oldPos, this.animalsPos);
                 }
-                positionChanged(oldPos, this.animalsPos);
                 break;
         }
     }
